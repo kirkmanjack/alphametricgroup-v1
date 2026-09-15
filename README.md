@@ -1,4 +1,4 @@
-# Synaspe Markets — responsive HTML/Tailwind landing page
+# AlphaMetric Group — responsive HTML/Tailwind landing page
 
 A responsive recreation inspired by the supplied screenshot, rebuilt as plain HTML + Tailwind CSS + a separate custom JavaScript file.
 
