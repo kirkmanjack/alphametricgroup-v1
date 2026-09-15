@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AlphaMetric Group — a transparent bridge to global commerce.">
+  <title>AlphaMetric Group - Your Bridge to Global Commerce</title>
+
+  <!-- Tailwind CSS: no React / Next.js required -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+          },
+          colors: {
+            ink: "#080a0f",
+            panel: "#10131a",
+            line: "#242936",
+            violet: "#8b5cf6",
+            cyan: "#22d3ee",
+            lime: "#a3e635"
+          },
+          boxShadow: {
+            glow: "0 0 45px rgba(139,92,246,.14)"
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 50% -5%, rgba(139, 92, 246, .13), transparent 26rem),
+        #080a0f;
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
+      background-size: 42px 42px;
+    }
+
+    .noise {
+      background-image: repeating-linear-gradient(135deg,
+          rgba(255, 255, 255, .025) 0px,
+          rgba(255, 255, 255, .025) 1px,
+          transparent 1px,
+          transparent 5px);
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .fade-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: .08s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: .16s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: .24s;
+    }
+
+    .reveal-delay-4 {
+      transition-delay: .32s;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, #fff 5%, #c4b5fd 48%, #22d3ee 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .btn-main {
+      background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+      box-shadow: 0 10px 35px rgba(139, 92, 246, .24);
+    }
+
+    .btn-main:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(17, 20, 28, .95), rgba(13, 15, 21, .96));
+      border: 1px solid rgba(255, 255, 255, .075);
+    }
+
+    .field {
+      background: #171b25;
+      border: 1px solid #282e3b;
+    }
+
+    .field:focus {
+      outline: none;
+      border-color: rgba(139, 92, 246, .75);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, .12);
+    }
+
+    .ticker {
+      animation: ticker 24s linear infinite;
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="text-white antialiased selection:bg-violet-500/30 selection:text-white">
+  <!-- Header -->
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-ink/80 backdrop-blur-xl">
+    <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 lg:px-8">
+      <a href="#top" class="flex items-center gap-2 font-extrabold tracking-tight">
+        <span
+          class="grid h-7 w-7 place-items-center rounded-lg bg-violet-500/15 text-violet-300 ring-1 ring-violet-400/20">
+          <span class="text-sm">AG</span>
+        </span>
+        <span>ALPHAMETRIC <span class="text-violet-300">GROUP</span></span>
+      </a>
+
+      <nav class="hidden items-center gap-7 text-xs font-medium text-slate-400 md:flex">
+        <a class="nav-link hover:text-white" href="#services">Services</a>
+        <a class="nav-link hover:text-white" href="#process">How it works</a>
+        <a class="nav-link hover:text-white" href="#fees">Fees</a>
+        <a class="nav-link hover:text-white" href="#security">Security</a>
+        <a class="nav-link hover:text-white" href="#start">Contact</a>
+      </nav>
+
+      <div class="hidden items-center gap-2 sm:flex">
+        <a href="#calculator"
+          class="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold text-slate-300 hover:border-violet-400/40 hover:text-white">Get Started</a>
+        <a href="tel:+1234567890" class="btn-main flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold transition">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            class="h-4 w-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 0 1-2.18 2
+              19.79 19.79 0 0 1-8.63-3.07
+              19.5 19.5 0 0 1-6-6
+              19.79 19.79 0 0 1-3.07-8.67
+              A2 2 0 0 1 4.11 2h3
+              a2 2 0 0 1 2 1.72
+              12.84 12.84 0 0 0 .7 2.81
+              2 2 0 0 1-.45 2.11L8.09 9.91
+              a16 16 0 0 0 6 6l1.27-1.27
+              a2 2 0 0 1 2.11-.45
+              12.84 12.84 0 0 0 2.81.7
+              A2 2 0 0 1 22 16.92z" />
+          </svg>
+          <span>Call Now</span>
+        </a>
+        </div>
+
+      <button id="menuButton" type="button" aria-label="Open menu" aria-expanded="false"
+        class="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[.03] md:hidden">
+        <span class="space-y-1.5">
+          <i class="block h-px w-5 bg-white"></i>
+          <i class="block h-px w-5 bg-white"></i>
+          <i class="block h-px w-5 bg-white"></i>
+        </span>
+      </button>
+    </div>
+
+    <div id="mobileMenu" class="hidden border-t border-white/5 bg-ink px-5 py-5 md:hidden">
+      <div class="flex flex-col gap-1 text-sm text-slate-300">
+        <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#services">Services</a>
+        <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#process">How it works</a>
+        <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#fees">Fees</a>
+        <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#security">Security</a>
+        <a class="rounded-lg px-3 py-3 hover:bg-white/5" href="#start">Contact</a>
+        <a class="mt-2 rounded-lg bg-violet-600 px-3 py-3 text-center font-bold" href="#start">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="relative overflow-hidden pt-28">
+      <div class="grid-bg absolute inset-0 opacity-60"></div>
+      <div class="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-violet-600/10 blur-3xl"></div>
+
+      <div class="relative mx-auto max-w-6xl px-5 pb-16 pt-10 text-center lg:px-8 lg:pb-24">
+        <div
+          class="fade-up mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-violet-300/15 bg-violet-400/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-[.18em] text-violet-200">
+          <span class="h-1.5 w-1.5 rounded-full bg-cyan-300"></span>
+          Built for global business
+        </div>
+
+        <h1
+          class="fade-up reveal-delay-1 mx-auto max-w-4xl text-4xl font-extrabold leading-[1.03] tracking-[-.04em] sm:text-5xl lg:text-7xl">
+          Your Bridge to<br>
+          <span class="gradient-text">Global Commerce</span>
+        </h1>
+
+        <p class="fade-up reveal-delay-2 mx-auto mt-6 max-w-2xl text-sm leading-6 text-slate-400 sm:text-base">
+          Move money, source vehicles, and access opportunities across borders —
+          with one transparent platform built around speed, clarity, and accountability.
+        </p>
+
+        <div class="fade-up reveal-delay-3 mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+          <a href="#start" class="btn-main rounded-xl px-7 py-3.5 text-sm font-bold transition">Start a Transaction</a>
+          <a href="#services"
+            class="rounded-xl border border-white/10 bg-white/[.025] px-7 py-3.5 text-sm font-semibold text-slate-200 hover:bg-white/[.05]">Explore
+            Services</a>
+        </div>
+
+        <div
+          class="fade-up reveal-delay-4 mx-auto mt-14 grid max-w-3xl grid-cols-3 divide-x divide-white/10 border-y border-white/5 py-5">
+          <div>
+            <div class="text-xl font-bold">1000+</div>
+            <div class="mt-1 text-[10px] uppercase tracking-widest text-slate-500">Transactions</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold">14+</div>
+            <div class="mt-1 text-[10px] uppercase tracking-widest text-slate-500">Markets</div>
+          </div>
+          <div>
+            <div class="text-xl font-bold">48h</div>
+            <div class="mt-1 text-[10px] uppercase tracking-widest text-slate-500">Typical speed</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-y border-white/5 bg-white/[.015] py-2 overflow-hidden">
+        <div class="ticker flex min-w-max items-center gap-10 text-[9px] uppercase tracking-[.22em] text-slate-500">
+          <span>Global Trade</span><span>•</span><span>Secure Payments</span><span>•</span><span>Vehicle
+            Sourcing</span><span>•</span><span>Growth Capital</span><span>•</span>
+          <span>Global Trade</span><span>•</span><span>Secure Payments</span><span>•</span><span>Vehicle
+            Sourcing</span><span>•</span><span>Growth Capital</span><span>•</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-28">
+      <div class="fade-up text-center">
+        <span class="text-[10px] font-bold uppercase tracking-[.25em] text-violet-300">Our services</span>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Three Services.<br>One Simple Process.</h2>
+        <p class="mx-auto mt-4 max-w-xl text-sm leading-6 text-slate-500">Everything you need to move value across
+          borders without the usual complexity.</p>
+      </div>
+
+      <div class="mt-10 grid gap-4 md:grid-cols-3">
+        <article class="card fade-up reveal-delay-1 rounded-2xl p-6">
+          <div
+            class="mb-5 grid h-10 w-10 place-items-center rounded-xl bg-violet-500/10 text-violet-300 ring-1 ring-violet-400/10">
+            ↗</div>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-violet-300">01</p>
+          <h3 class="mt-2 text-lg font-bold">Global Payments</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-500">Send and receive business funds across markets with clear
+            rates, tracked transfers, and fewer surprises.</p>
+          <div class="mt-6 flex flex-wrap gap-2 text-[9px] text-slate-500">
+            <span class="rounded-full bg-white/[.04] px-2.5 py-1">Cross-border</span>
+            <span class="rounded-full bg-white/[.04] px-2.5 py-1">Tracked</span>
+          </div>
+        </article>
+
+        <article class="card fade-up reveal-delay-2 rounded-2xl p-6">
+          <div
+            class="mb-5 grid h-10 w-10 place-items-center rounded-xl bg-cyan-400/10 text-cyan-300 ring-1 ring-cyan-300/10">
+            ▣</div>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-cyan-300">02</p>
+          <h3 class="mt-2 text-lg font-bold">Vehicle Sourcing</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-500">Source and coordinate international vehicle purchases with
+            inspection, documentation, shipping, and delivery support.</p>
+          <div class="mt-6 flex flex-wrap gap-2 text-[9px] text-slate-500">
+            <span class="rounded-full bg-white/[.04] px-2.5 py-1">EV & ICE</span>
+            <span class="rounded-full bg-white/[.04] px-2.5 py-1">Logistics</span>
+          </div>
+        </article>
+
+        <article class="card fade-up reveal-delay-3 rounded-2xl p-6">
+          <div
+            class="mb-5 grid h-10 w-10 place-items-center rounded-xl bg-lime-400/10 text-lime-300 ring-1 ring-lime-300/10">
+            ◉</div>
+          <p class="text-[10px] font-bold uppercase tracking-widest text-lime-300">03</p>
+          <h3 class="mt-2 text-lg font-bold">Growth Capital</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-500">Connect qualified businesses and opportunities with
+            structured funding pathways designed for measurable growth.</p>
+          <div class="mt-6 flex flex-wrap gap-2 text-[9px] text-slate-500">
+            <span class="rounded-full bg-white/[.04] px-2.5 py-1">Deal support</span>
+            <span class="rounded-full bg-white/[.04] px-2.5 py-1">Structured</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="border-y border-white/5 bg-[#0c0f15]">
+      <div class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
+        <div class="fade-up text-center">
+          <span class="text-[10px] font-bold uppercase tracking-[.25em] text-violet-300">How it works</span>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">How Your Money Moves</h2>
+          <p class="mt-4 text-sm text-slate-500">Four clear steps. No black boxes.</p>
+        </div>
+
+        <div class="mt-12 grid gap-7 md:grid-cols-4">
+          <div class="fade-up reveal-delay-1 text-center md:text-left">
+            <span
+              class="mx-auto grid h-10 w-10 place-items-center rounded-full border border-violet-400/20 bg-violet-400/10 text-xs font-bold text-violet-200 md:mx-0">01</span>
+            <h3 class="mt-4 font-bold">Tell us what you need</h3>
+            <p class="mt-2 text-xs leading-5 text-slate-500">Share the amount, destination, purpose, and timing.</p>
+          </div>
+          <div class="fade-up reveal-delay-2 text-center md:text-left">
+            <span
+              class="mx-auto grid h-10 w-10 place-items-center rounded-full border border-violet-400/20 bg-violet-400/10 text-xs font-bold text-violet-200 md:mx-0">02</span>
+            <h3 class="mt-4 font-bold">Get a clear quote</h3>
+            <p class="mt-2 text-xs leading-5 text-slate-500">See the rate, service fee, expected amount, and next steps.
+            </p>
+          </div>
+          <div class="fade-up reveal-delay-3 text-center md:text-left">
+            <span
+              class="mx-auto grid h-10 w-10 place-items-center rounded-full border border-violet-400/20 bg-violet-400/10 text-xs font-bold text-violet-200 md:mx-0">03</span>
+            <h3 class="mt-4 font-bold">We execute securely</h3>
+            <p class="mt-2 text-xs leading-5 text-slate-500">Your transaction is processed and monitored from start to
+              finish.</p>
+          </div>
+          <div class="fade-up reveal-delay-4 text-center md:text-left">
+            <span
+              class="mx-auto grid h-10 w-10 place-items-center rounded-full border border-violet-400/20 bg-violet-400/10 text-xs font-bold text-violet-200 md:mx-0">04</span>
+            <h3 class="mt-4 font-bold">You receive confirmation</h3>
+            <p class="mt-2 text-xs leading-5 text-slate-500">Get transaction updates and a clear record of the outcome.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explanation -->
+    <section class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
+      <div class="fade-up text-center">
+        <span class="text-[10px] font-bold uppercase tracking-[.25em] text-violet-300">No hidden steps</span>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Everything Explained<br>In Plain English</h2>
+        <p class="mx-auto mt-4 max-w-xl text-sm leading-6 text-slate-500">Know what happens to your money before you
+          press send.</p>
+      </div>
+
+      <div class="fade-up mt-10 overflow-hidden rounded-2xl border border-white/10 bg-[#0d1016] shadow-glow">
+        <div class="flex items-center justify-between border-b border-white/5 px-5 py-4">
+          <div class="flex items-center gap-2">
+            <span class="h-2 w-2 rounded-full bg-violet-400"></span>
+            <span class="text-xs font-bold">Sample Transaction Flow</span>
+          </div>
+          <span class="rounded-full bg-violet-500/10 px-2 py-1 text-[9px] font-semibold text-violet-300">LIVE
+            STATUS</span>
+        </div>
+        <div class="grid gap-3 p-4 sm:grid-cols-2">
+          <div class="space-y-2">
+            <div class="rounded-xl border border-white/5 bg-white/[.025] p-3 text-xs"><b>1.</b> Request submitted</div>
+            <div class="rounded-xl border border-white/5 bg-white/[.025] p-3 text-xs"><b>2.</b> Quote and fees confirmed
+            </div>
+            <div class="rounded-xl border border-white/5 bg-white/[.025] p-3 text-xs"><b>3.</b> Payment instructions
+              issued</div>
+            <div class="rounded-xl border border-white/5 bg-white/[.025] p-3 text-xs"><b>4.</b> Funds received and
+              verified</div>
+            <div class="rounded-xl border border-white/5 bg-white/[.025] p-3 text-xs"><b>5.</b> Transaction executed
+            </div>
+            <div class="rounded-xl border border-white/5 bg-white/[.025] p-3 text-xs"><b>6.</b> Recipient confirmation
+            </div>
+          </div>
+          <div class="space-y-2">
+            <div class="rounded-xl border border-white/5 bg-[#151925] p-3 text-xs text-slate-300"><span
+                class="mr-2 text-violet-300">✓</span>Amount and destination verified</div>
+            <div class="rounded-xl border border-white/5 bg-[#151925] p-3 text-xs text-slate-300"><span
+                class="mr-2 text-cyan-300">✓</span>Exchange rate locked</div>
+            <div class="rounded-xl border border-white/5 bg-[#151925] p-3 text-xs text-slate-300"><span
+                class="mr-2 text-violet-300">✓</span>Compliance checks completed</div>
+            <div class="rounded-xl border border-white/5 bg-[#151925] p-3 text-xs text-slate-300"><span
+                class="mr-2 text-lime-300">✓</span>Payment released</div>
+            <div class="rounded-xl border border-white/5 bg-[#151925] p-3 text-xs text-slate-300"><span
+                class="mr-2 text-cyan-300">✓</span>Delivery confirmed</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-3 grid gap-3 sm:grid-cols-2">
+        <details class="group rounded-xl border border-white/5 bg-white/[.02] p-4">
+          <summary class="cursor-pointer list-none text-xs font-semibold">What happens if details change?</summary>
+          <p class="mt-3 text-xs leading-5 text-slate-500">We pause the affected step, confirm the new details with you,
+            and continue only after the updated instructions are approved.</p>
+        </details>
+        <details class="group rounded-xl border border-white/5 bg-white/[.02] p-4">
+          <summary class="cursor-pointer list-none text-xs font-semibold">Can I track the transaction?</summary>
+          <p class="mt-3 text-xs leading-5 text-slate-500">Yes. Each transaction has a status trail so you can see where
+            it is in the process.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Fees -->
+    <section id="fees" class="border-y border-white/5 bg-[#0c0f15]">
+      <div class="mx-auto max-w-6xl px-5 py-20 text-center lg:px-8 lg:py-24">
+        <div class="fade-up">
+          <span class="text-[10px] font-bold uppercase tracking-[.25em] text-violet-300">Simple pricing</span>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">One Rate. Always 10%.</h2>
+          <p class="mx-auto mt-4 max-w-xl text-sm leading-6 text-slate-500">A straightforward service fee, shown before
+            you approve the transaction.</p>
+        </div>
+
+        <div class="fade-up mx-auto mt-10 max-w-sm rounded-2xl border border-white/10 bg-[#10141d] p-6 shadow-glow">
+          <div class="text-5xl font-extrabold tracking-tight text-violet-300">10%</div>
+          <p class="mt-1 text-[10px] uppercase tracking-[.2em] text-slate-500">Service fee</p>
+          <div class="mt-7 grid grid-cols-2 gap-3">
+            <div class="rounded-xl bg-white/[.035] p-4">
+              <div class="text-lg font-bold">5%</div>
+              <div class="mt-1 text-[9px] text-slate-500">Processing</div>
+            </div>
+            <div class="rounded-xl bg-white/[.035] p-4">
+              <div class="text-lg font-bold">5%</div>
+              <div class="mt-1 text-[9px] text-slate-500">Service</div>
+            </div>
+          </div>
+          <div class="mt-5 rounded-xl border border-white/5 bg-black/20 p-4 text-left text-xs">
+            <div class="flex justify-between py-1"><span class="text-slate-500">Transaction
+                amount</span><span>$10,000</span></div>
+            <div class="flex justify-between py-1"><span class="text-slate-500">Service fee</span><span>$1,000</span>
+            </div>
+            <div class="mt-2 flex justify-between border-t border-white/5 pt-3 font-bold"><span>Total</span><span
+                class="text-violet-300">$11,000</span></div>
+          </div>
+          <a href="#calculator"
+            class="mt-5 block rounded-xl border border-violet-400/20 bg-violet-500/10 px-4 py-3 text-xs font-bold text-violet-200 hover:bg-violet-500/15">Calculate
+            My Cost</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security -->
+    <section id="security" class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
+      <div class="fade-up text-center">
+        <span class="text-[10px] font-bold uppercase tracking-[.25em] text-violet-300">Trust by design</span>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Remote. Authorized. Accountable.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-sm leading-6 text-slate-500">Built so every important action has an owner,
+          a record, and a clear next step.</p>
+      </div>
+
+      <div class="mt-10 grid gap-4 md:grid-cols-2">
+        <article class="card fade-up rounded-2xl p-6">
+          <p class="text-[10px] uppercase tracking-widest text-violet-300">01 / Authorization</p>
+          <h3 class="mt-2 text-lg font-bold">Know who approves what.</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-500">Transaction instructions are confirmed before execution,
+            helping reduce mistakes and unauthorized changes.</p>
+          <div class="mt-5 flex gap-2 text-[9px] text-slate-500"><span
+              class="rounded-full bg-white/[.04] px-2.5 py-1">Approval trail</span><span
+              class="rounded-full bg-white/[.04] px-2.5 py-1">Verified details</span></div>
+        </article>
+        <article class="card fade-up reveal-delay-1 rounded-2xl p-6">
+          <p class="text-[10px] uppercase tracking-widest text-cyan-300">02 / Visibility</p>
+          <h3 class="mt-2 text-lg font-bold">Follow the money.</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-500">Status updates keep you informed from the first request
+            through completion and final confirmation.</p>
+          <div class="mt-5 flex gap-2 text-[9px] text-slate-500"><span
+              class="rounded-full bg-white/[.04] px-2.5 py-1">Status updates</span><span
+              class="rounded-full bg-white/[.04] px-2.5 py-1">Records</span></div>
+        </article>
+      </div>
+
+      <div class="fade-up mt-4 rounded-2xl border border-white/5 bg-white/[.02] p-5">
+        <div class="flex items-center gap-2 text-xs font-bold"><span class="text-lime-300">●</span> Built for
+          accountable execution</div>
+        <ul class="mt-4 grid gap-3 text-xs text-slate-500 sm:grid-cols-2">
+          <li>✓ Clear transaction instructions</li>
+          <li>✓ Documented approvals</li>
+          <li>✓ Human review for critical steps</li>
+          <li>✓ Traceable transaction status</li>
+          <li>✓ Plain-language fee disclosure</li>
+          <li>✓ Direct support when something changes</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Transparency -->
+    <section class="border-y border-white/5 bg-[#0c0f15]">
+      <div class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
+        <div class="fade-up text-center">
+          <span class="text-[10px] font-bold uppercase tracking-[.25em] text-violet-300">Our principles</span>
+          <h2 class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Built on Transparency<br>and Accountability
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-sm leading-6 text-slate-500">The details matter. We make them visible
+            before they become problems.</p>
+        </div>
+
+        <div class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="card fade-up rounded-xl p-5">
+            <div class="text-violet-300">⌂</div>
+            <h3 class="mt-4 text-sm font-bold">Clear ownership</h3>
+            <p class="mt-2 text-xs leading-5 text-slate-500">Every transaction has a clear point of contact and defined
+              next step.</p>
+          </div>
+          <div class="card fade-up reveal-delay-1 rounded-xl p-5">
+            <div class="text-cyan-300">▣</div>
+            <h3 class="mt-4 text-sm font-bold">Fair pricing</h3>
+            <p class="mt-2 text-xs leading-5 text-slate-500">Fees are explained upfront so you can make informed
+              decisions.</p>
+          </div>
+          <div class="card fade-up reveal-delay-2 rounded-xl p-5">
+            <div class="text-violet-300">▤</div>
+            <h3 class="mt-4 text-sm font-bold">Documented actions</h3>
+            <p class="mt-2 text-xs leading-5 text-slate-500">Important approvals and changes are captured for reference.
+            </p>
+          </div>
+          <div class="card fade-up reveal-delay-1 rounded-xl p-5">
+            <div class="text-lime-300">●</div>
+            <h3 class="mt-4 text-sm font-bold">Human review</h3>
+            <p class="mt-2 text-xs leading-5 text-slate-500">Critical steps can be reviewed before execution.</p>
+          </div>
+          <div class="card fade-up reveal-delay-2 rounded-xl p-5">
+            <div class="text-rose-300">!</div>
+            <h3 class="mt-4 text-sm font-bold">Exception handling</h3>
+            <p class="mt-2 text-xs leading-5 text-slate-500">When something changes, the affected step is surfaced
+              instead of hidden.</p>
+          </div>
+          <div class="card fade-up reveal-delay-3 rounded-xl p-5">
+            <div class="text-cyan-300">⌁</div>
+            <h3 class="mt-4 text-sm font-bold">Direct support</h3>
+            <p class="mt-2 text-xs leading-5 text-slate-500">Get a real response when a transaction needs clarification.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculator / CTA -->
+    <section id="calculator" class="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
+      <div class="fade-up text-center">
+        <span class="text-[10px] font-bold uppercase tracking-[.25em] text-violet-300">Estimate your deal</span>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Earn 5% Per Deal.<br>Work From Anywhere.</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-sm leading-6 text-slate-500">Explore a simple example, then send your
+          requirements to the team.</p>
+      </div>
+
+      <div class="mt-10 grid gap-5 lg:grid-cols-[1fr_1.1fr]">
+        <div class="fade-up rounded-2xl border border-white/5 bg-[#0d1016] p-5">
+          <h3 class="text-sm font-bold">Partner earnings</h3>
+          <p class="mt-2 text-xs leading-5 text-slate-500">A simple commission example based on the deal value you
+            enter.</p>
+          <div class="mt-5 space-y-2">
+            <div class="flex items-center gap-3 rounded-xl bg-white/[.025] p-3 text-xs"><span
+                class="text-violet-300">●</span> Share a qualified opportunity</div>
+            <div class="flex items-center gap-3 rounded-xl bg-white/[.025] p-3 text-xs"><span
+                class="text-cyan-300">●</span> AlphaMetric Group handles the process</div>
+            <div class="flex items-center gap-3 rounded-xl bg-white/[.025] p-3 text-xs"><span
+                class="text-lime-300">●</span> Earn 5% on an eligible completed deal</div>
+            <div class="flex items-center gap-3 rounded-xl bg-white/[.025] p-3 text-xs"><span
+                class="text-violet-300">●</span> Track progress remotely</div>
+          </div>
+        </div>
+
+        <!-- Work With Us Form -->
+        <div class="fade-up reveal-delay-1 rounded-2xl border border-white/10 bg-[#10141d] p-5 shadow-glow">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-sm font-bold">Work With Us</h3>
+              <p class="mt-1 text-[10px] text-slate-500">
+                Submit your information to get started.
+              </p>
+            </div>
+        
+            <span class="rounded-full bg-violet-500/10 px-2.5 py-1 text-[9px] font-bold text-violet-300">
+              APPLICATION
+            </span>
+          </div>
+        
+          <form id="workWithUsForm" class="mt-6 space-y-4" enctype="multipart/form-data">
+        
+            <!-- Full Name -->
+            <div>
+              <label for="fullName" class="block text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+                Full Name
+              </label>
+        
+              <input id="fullName" name="full_name" type="text" required autocomplete="name" placeholder="Enter your full name"
+                class="field mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-600">
+            </div>
+        
+            <!-- Phone -->
+            <div>
+              <label for="phone" class="block text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+                Phone Number
+              </label>
+        
+              <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="+1 234 567 8900"
+                class="field mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-600">
+            </div>
+        
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+                Email Address
+              </label>
+        
+              <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com"
+                class="field mt-2 w-full rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-600">
+            </div>
+        
+            <!-- ID Card Upload -->
+            <div>
+              <label for="idCard" class="block text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+                Government-Issued ID
+              </label>
+        
+              <label for="idCard"
+                class="mt-2 flex cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-white/10 bg-white/[.025] px-4 py-6 text-center transition hover:border-violet-400/40 hover:bg-violet-500/[.03]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  class="h-7 w-7 text-violet-300">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 16V4m0 0 4 4m-4-4L8 8M5 20h14a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2h-2m-10 0H5a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2Z" />
+                </svg>
+        
+                <span class="mt-2 text-xs font-semibold text-slate-300">
+                  Click to upload your ID
+                </span>
+        
+                <span class="mt-1 text-[9px] text-slate-600">
+                  JPG, PNG or PDF · Max 10MB
+                </span>
+        
+                <span id="idFileName" class="mt-2 hidden max-w-full truncate text-[10px] text-violet-300"></span>
+        
+                <input id="idCard" name="id_card" type="file" required accept=".jpg,.jpeg,.png,.pdf" class="hidden">
+              </label>
+            </div>
+        
+            <!-- What do you need? -->
+            <div>
+              <label for="service" class="block text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+                What are you interested in?
+              </label>
+        
+              <select id="service" name="service" required class="field mt-2 w-full rounded-xl px-4 py-3 text-sm text-white">
+                <option value="" selected disabled>Select a service</option>
+                <option value="global-payments">Global Payments</option>
+                <option value="vehicle-sourcing">Vehicle Sourcing</option>
+                <option value="growth-capital">Growth Capital</option>
+                <option value="partnership">Business Partnership</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+        
+            <!-- Additional Information -->
+            <div>
+              <label for="message" class="block text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+                Additional Information
+              </label>
+        
+              <textarea id="message" name="message" rows="3" placeholder="Tell us briefly how you'd like to work with us..."
+                class="field mt-2 w-full resize-none rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-600"></textarea>
+            </div>
+        
+            <!-- Consent -->
+            <label class="flex cursor-pointer items-start gap-3">
+              <input id="consent" name="consent" type="checkbox" required
+                class="mt-0.5 h-4 w-4 rounded border-white/10 bg-white/5 accent-violet-600">
+        
+              <span class="text-[10px] leading-4 text-slate-600">
+                I confirm that the information provided is accurate and consent to
+                Synaspe Markets contacting me regarding my application.
+              </span>
+            </label>
+        
+            <!-- Submit -->
+            <button id="workWithUsSubmit" type="submit"
+              class="btn-main flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-xs font-bold transition disabled:cursor-not-allowed disabled:opacity-50">
+              <span>Submit Application</span>
+        
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                class="h-4 w-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7" />
+              </svg>
+            </button>
+        
+            <p id="formMessage" class="hidden text-center text-[10px]" role="status"></p>
+        
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="start" class="px-5 pb-20 lg:px-8">
+      <div
+        class="noise mx-auto max-w-6xl overflow-hidden rounded-2xl border border-violet-300/20 bg-violet-500/90 px-6 py-12 text-center text-white sm:px-10">
+        <p class="text-[10px] font-extrabold uppercase tracking-[.25em]">Ready to get started?</p>
+        <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Move your next deal<br>with confidence.</h2>
+        <p class="mx-auto mt-4 max-w-lg text-sm text-white/65">Tell us what you need and we'll help you map the simplest
+          path from request to completion.</p>
+        <div class="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+          <a href="mailto:support@alphametricgroup.com"
+            class="rounded-xl bg-black px-6 py-3 text-xs font-bold text-white hover:bg-black/80">support@alphametricgroup.com</a>
+          <a href="tel:+1234567890"
+            class="flex items-center justify-center gap-2 rounded-xl bg-white/80 px-6 py-3 text-xs font-bold text-black hover:bg-white">
+          
+            <!-- Phone Call Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              class="h-4 w-4">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 0 1-2.18 2
+                       19.79 19.79 0 0 1-8.63-3.07
+                       19.5 19.5 0 0 1-6-6
+                       19.79 19.79 0 0 1-3.07-8.67
+                       A2 2 0 0 1 4.11 2h3
+                       a2 2 0 0 1 2 1.72
+                       12.84 12.84 0 0 0 .7 2.81
+                       2 2 0 0 1-.45 2.11L8.09 9.91
+                       a16 16 0 0 0 6 6l1.27-1.27
+                       a2 2 0 0 1 2.11-.45
+                       12.84 12.84 0 0 0 2.81.7
+                       A2 2 0 0 1 22 16.92z" />
+            </svg>
+          
+            <span>Call Us</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 bg-[#080a0f]">
+    <div class="mx-auto max-w-6xl px-5 py-12 lg:px-8">
+      <div class="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+        <div>
+          <a href="#top" class="font-extrabold tracking-tight">ALPHAMETRIC <span
+              class="text-violet-300">GROUP</span></a>
+          <p class="mt-4 max-w-xs text-xs leading-5 text-slate-600">Global payments, vehicle sourcing, and growth
+            opportunities - designed around transparent execution.</p>
+
+          <div class="mt-5">
+            <p class="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+              Our Address
+            </p>
+            <p class="mt-2 text-xs leading-5 text-slate-600">
+              123 Business Avenue, Suite 400<br>
+              New York, NY 10001<br>
+              United States
+            </p>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Company</h4>
+          <div class="mt-4 space-y-3 text-xs text-slate-600"><a class="block hover:text-white"
+              href="#services">Services</a><a class="block hover:text-white" href="#security">Trust</a><a
+              class="block hover:text-white" href="#calculator">Work With Us</a></div>
+        </div>
+        <div>
+          <h4 class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Solutions</h4>
+          <div class="mt-4 space-y-3 text-xs text-slate-600"><a class="block hover:text-white"
+              href="#services">Payments</a><a class="block hover:text-white" href="#services">Vehicles</a><a
+              class="block hover:text-white" href="#services">Capital</a></div>
+        </div>
+        <div>
+          <h4 class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Contact</h4>
+          <div class="mt-4 space-y-3 text-xs text-slate-600"><a class="block hover:text-white" href="tel:+1234567890">Call Us</a><a class="block hover:text-white"
+              href="mailto:support@alphametricgroup.com">Email Us</a><a class="block hover:text-white" href="#start">Start
+              a deal</a></div>
+        </div>
+      </div>
+      <div
+        class="mt-10 flex flex-col justify-between gap-3 border-t border-white/5 pt-6 text-[10px] text-slate-700 sm:flex-row">
+        <span>© <span id="year"></span> AlphaMetric Group LLC. All rights reserved.</span><span>Transparent commerce.
+          Accountable execution.</span></div>
+    </div>
+  </footer>
+
+  <div id="toast"
+    class="pointer-events-none fixed bottom-5 left-1/2 z-[60] hidden -translate-x-1/2 rounded-xl border border-white/10 bg-[#151925] px-5 py-3 text-xs font-semibold text-white shadow-2xl">
+  </div>
+
+  <!-- Floating WhatsApp Chat Button -->
+  <a href="https://wa.me/1234567890?text=Hello%20AlphaMetric%20Group%2C%20I%27d%20like%20to%20make%20an%20inquiry."
+    target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"
+    class="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-black/30 transition-all duration-300 hover:scale-105 hover:shadow-xl sm:bottom-6 sm:right-6">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.075-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+      <path
+        d="M12.004 2C6.479 2 2 6.477 2 12c0 1.76.463 3.412 1.348 4.889L2.05 21.95l5.204-1.264A9.96 9.96 0 0 0 12.004 22C17.523 22 22 17.523 22 12S17.523 2 12.004 2zm0 18.18a8.14 8.14 0 0 1-4.15-1.137l-.297-.176-3.088.75.759-3.01-.194-.31A8.14 8.14 0 1 1 12.004 20.18z" />
+    </svg>
+
+    <span>Chat on WhatsApp</span>
+  </a>
+  <!-- js sc -->
+  <script src="./script.js"></script>
+</body>
+
+</html>
